@@ -2,7 +2,9 @@
 
 ### Install
 -Install [Node](https://nodejs.org/en/download/)
+
 -Clone the repository and in the root directory hit "npm install"
+
 -Hit "npm start" to run the app.
 
 Enjoy!
