@@ -1,4 +1,5 @@
 # GitHub Manager
+React app built with using Redux.
 
 ### Install
 -Install [Node](https://nodejs.org/en/download/)
