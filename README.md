@@ -1,12 +1,14 @@
 # GitHub Manager
-React app built with using Redux.
+React app built with using:
+*React Hooks
+*Redux
 
 ### Install
--Install [Node](https://nodejs.org/en/download/)
+*Install [Node](https://nodejs.org/en/download/)
 
--Clone the repository and in the root directory hit "npm install"
+*Clone the repository and in the root directory hit "npm install"
 
--Hit "npm start" to run the app.
+*Hit "npm start" to run the app.
 
 Enjoy!
 
