@@ -1,20 +1,20 @@
 import React from 'react';
 
-const AddUser = (props) => {
+const AddUser = ({placeholder, userName, onChange, onSave}) => {
     return (
         <form className='addForm'>
             <input 
                 type='text' 
                 className='userInput' 
-                placeholder={props.placeholder} 
-                value={props.userName} 
-                onChange={props.onChange}
+                placeholder={placeholder} 
+                value={userName} 
+                onChange={onChange}
                 required/>
             <input 
                 type='submit'
                 className='userAddBtn'
                 value='Add'
-                onClick={props.onSave}/>
+                onClick={onSave}/>
         </form>
     );
 }

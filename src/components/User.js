@@ -1,11 +1,11 @@
 import React from 'react';
 
-const User = (props) => {
+const User = ({avatar_url, name, location}) => {
     return (
             <div className='userCard'>
-                <img src={props.avatar_url} width='75' alt='avatar'/>
-                <div className='userName'>{props.name}</div>
-                <div className='userLocation'>{props.location}</div>
+                <img src={avatar_url} width='75' alt='avatar'/> 
+                <div className='userName'>{name}</div>
+                <div className='userLocation'>{location}</div>
             </div>
     );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import User from './User';
 
-const UserList = (props) => {
+const UserList = ({users}) => {
     return (
         <div className='addUserLayout'>
-            {props.users.map((user, index) => 
+            {users.map((user, index) => 
                 <User key={index} {...user}/>
             )}
         </div>

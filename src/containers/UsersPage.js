@@ -1,72 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as userActions from '../redux/actions/userActions';
+import {addUser} from '../redux/actions/userActions';
 import UserList from '../components/UserList';
-import axios from 'axios';
 import AddUser from '../components/AddUser';
+import axios from 'axios';
 
-class UsersPage extends Component {
+const UsersPage = ({addUser, users}) => {
+    const [userName, setUserName] = useState('');
+    const [placeholder, setPlaceholder] = useState('Enter Github Username . . .');
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: {
-                name: ''
-            },
-            placeholder: 'Enter Github Username . . .'
-        };
-    }
+    const onChange = e => setUserName(e.target.value);
 
-    onChange = (e) => {
-        const user = this.state.user;
-        user.name = e.target.value;
-        this.setState({
-            user
-        });
-    }
-
-    onSave = (e) => {
+    const onSave = e => {
         e.preventDefault();
-        axios.get(`https://api.github.com/users/${this.state.user.name}`)
+        axios.get(`https://api.github.com/users/${userName}`)
             .then(result => {
-                this.setState({placeholder: 'Enter Github Username . . .'});
-                this.props.actions.addUser(result.data);
+                setPlaceholder('Enter Github Username . . .');
+                addUser(result.data);
             })
-            .catch(err => {
-                console.log('User not found', err);
-                this.setState({placeholder: 'User not found.'});
-            })
-        this.setState({
-            user: {
-                ...this.state.user, 
-                name: ''
-            }
-        });
+            .catch(() => setPlaceholder('User not found'))
+        setUserName('');
     }
 
-    render() {
-        return (
-            <userpage>
-                <UserList users={this.props.users}/>
-                <AddUser 
-                    userName={this.state.user.name} 
-                    onChange={this.onChange} 
-                    onSave={this.onSave}
-                    placeholder={this.state.placeholder}/>
-            </userpage>
-        );
-    }
+    return (
+        <userpage>
+            <UserList users={users}/>
+            <AddUser 
+                userName={userName} 
+                onChange={onChange} 
+                onSave={onSave}
+                placeholder={placeholder}/>
+        </userpage>
+    );
 }
 
-function mapStateToProps(state, ownProps) { 
-    return{};
-}
-
-function mapDispatchToProps(dispatch) {
-    return{
-        actions: bindActionCreators(userActions, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersPage);
+export default connect(null, {addUser})(UsersPage);
