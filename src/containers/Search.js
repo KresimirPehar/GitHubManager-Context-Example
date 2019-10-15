@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {filterUser} from '../redux/actions/userActions';
 
@@ -6,7 +6,7 @@ const Search = ({filterUser}) => {
     const onChange = e => filterUser(e.target.value);
 
     return (
-        <search className='searchLayout'>
+        <div id='search' className='searchLayout'>
             <div className='searchText'><span>Find user</span></div>
             <input
                 type='text'
@@ -14,7 +14,7 @@ const Search = ({filterUser}) => {
                 placeholder='Search . . .'
                 onChange={onChange}
                 required/>
-        </search>
+        </div>
     );
 }
 
