@@ -1,9 +1,11 @@
 import * as types from './userTypes';
 
-export function addUser (user) {
-    return {type: types.ADD_USER, user}
-}
+export const addUser = user => ({
+    type: types.ADD_USER, 
+    user
+})
 
-export function filterUser (user) {
-    return {type: types.FILTER_USER, user}
-}
+export const filterUser = user => ({
+    type: types.FILTER_USER, 
+    user
+})
