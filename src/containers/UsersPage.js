@@ -23,14 +23,14 @@ const UsersPage = ({ addUser, users }) => {
     };
 
     return (
-        <userpage>
+        <div id='userPage'>
             <UserList users={users} />
             <AddUser
                 userName={userName}
                 onChange={onChange}
                 onSave={onSave}
                 placeholder={placeholder} />
-        </userpage>
+        </div>
     );
 };
 
