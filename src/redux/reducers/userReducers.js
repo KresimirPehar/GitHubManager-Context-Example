@@ -1,4 +1,4 @@
-import * as types from '../actions/userTypes';
+import { ADD_USER, FILTER_USER, ADD_USER_ERROR } from '../actions/userTypes';
 
 const initialState = {
     user: [{
@@ -10,7 +10,8 @@ const initialState = {
         avatarUrl: 'https://avatars3.githubusercontent.com/u/42438024?v=4',
         name: 'Krešimir Pehar',
         location: 'Split, Croatia'
-    }]
+    }],
+    error: false
 };
 
 const addUser = (state, action) => ({
@@ -20,7 +21,8 @@ const addUser = (state, action) => ({
     ],
     filteredUser: [
         ...state.user, action.user
-    ]
+    ],
+    error: false
 });
 
 const filterUsers = (state, action) => ({
@@ -30,10 +32,12 @@ const filterUsers = (state, action) => ({
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.ADD_USER:
+        case ADD_USER:
             return addUser(state, action);
-        case types.FILTER_USER:
+        case FILTER_USER:
             return filterUsers(state, action);
+        case ADD_USER_ERROR:
+            return { ...state, error: true };
         default:
             return state;
     }

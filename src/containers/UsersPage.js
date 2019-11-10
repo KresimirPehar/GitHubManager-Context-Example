@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { addUser } from '../redux/actions/userActions';
+import { addGitHubUser } from '../redux/actions/userActions';
 import UserList from '../components/UserList';
 import AddUser from '../components/AddUser';
 
-const UsersPage = ({ addUser, users }) => {
+const UsersPage = ({ addGitHubUser, users, userError }) => {
     const [userName, setUserName] = useState('');
     const [placeholder, setPlaceholder] = useState('Enter Github Username . . .');
 
-    const onChange = e => setUserName(e.target.value);
+    useEffect(() => {
+        if (userError) setPlaceholder('User not found');
+        else setPlaceholder('Enter Github Username . . .');
+    }, [userError]);
+
+    const onChange = e => {
+        setPlaceholder('Enter Github Username . . .');
+        setUserName(e.target.value);
+    };
 
     const onSave = e => {
         e.preventDefault();
-        axios.get(`https://api.github.com/users/${userName}`)
-            .then(result => {
-                setPlaceholder('Enter Github Username . . .');
-                addUser(result.data);
-            })
-            .catch(() => setPlaceholder('User not found'));
+        addGitHubUser(userName);
         setUserName('');
     };
 
@@ -34,4 +36,4 @@ const UsersPage = ({ addUser, users }) => {
     );
 };
 
-export default connect(null, { addUser })(UsersPage);
+export default connect(state => ({ userError: state.users.error }), { addGitHubUser })(UsersPage);
