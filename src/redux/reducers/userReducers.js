@@ -2,16 +2,16 @@ import * as types from '../actions/userTypes';
 
 const initialState = {
     user: [{
-        avatar_url: 'https://avatars3.githubusercontent.com/u/42438024?v=4',
+        avatarUrl: 'https://avatars3.githubusercontent.com/u/42438024?v=4',
         name: 'Krešimir Pehar',
         location: 'Split, Croatia'
     }],
     filteredUser: [{
-        avatar_url: 'https://avatars3.githubusercontent.com/u/42438024?v=4',
+        avatarUrl: 'https://avatars3.githubusercontent.com/u/42438024?v=4',
         name: 'Krešimir Pehar',
         location: 'Split, Croatia'
     }]
-}
+};
 
 const addUser = (state, action) => ({
     ...state,
@@ -21,12 +21,12 @@ const addUser = (state, action) => ({
     filteredUser: [
         ...state.user, action.user
     ]
-})
+});
 
 const filterUsers = (state, action) => ({
     ...state,
     filteredUser: state.user.filter(user => user.name.toLowerCase().includes(action.user.toLowerCase()))
-})
+});
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -37,6 +37,6 @@ const userReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default userReducer;

@@ -1,14 +1,14 @@
 import React from 'react';
 import User from './User';
 
-const UserList = ({users}) => {
+const UserList = ({ users }) => {
     return (
         <div className='addUserLayout'>
-            {users.map((user, index) => 
-                <User key={index} {...user}/>
+            {users.map((user, index) =>
+                <User key={index.toString()} {...user} />
             )}
         </div>
     );
-}
+};
 
 export default UserList;

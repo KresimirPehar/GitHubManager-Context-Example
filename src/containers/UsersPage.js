@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {connect} from 'react-redux';
-import {addUser} from '../redux/actions/userActions';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { addUser } from '../redux/actions/userActions';
 import UserList from '../components/UserList';
 import AddUser from '../components/AddUser';
-import axios from 'axios';
 
-const UsersPage = ({addUser, users}) => {
+const UsersPage = ({ addUser, users }) => {
     const [userName, setUserName] = useState('');
     const [placeholder, setPlaceholder] = useState('Enter Github Username . . .');
 
@@ -18,20 +18,20 @@ const UsersPage = ({addUser, users}) => {
                 setPlaceholder('Enter Github Username . . .');
                 addUser(result.data);
             })
-            .catch(() => setPlaceholder('User not found'))
+            .catch(() => setPlaceholder('User not found'));
         setUserName('');
-    }
+    };
 
     return (
         <userpage>
-            <UserList users={users}/>
-            <AddUser 
-                userName={userName} 
-                onChange={onChange} 
+            <UserList users={users} />
+            <AddUser
+                userName={userName}
+                onChange={onChange}
                 onSave={onSave}
-                placeholder={placeholder}/>
+                placeholder={placeholder} />
         </userpage>
     );
-}
+};
 
-export default connect(null, {addUser})(UsersPage);
+export default connect(null, { addUser })(UsersPage);
