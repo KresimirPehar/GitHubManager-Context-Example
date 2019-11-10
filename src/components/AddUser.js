@@ -10,11 +10,12 @@ const AddUser = ({ placeholder, userName, onChange, onSave }) => {
                 value={userName}
                 onChange={onChange}
                 required />
-            <input
+            <button
                 type='submit'
                 className='userAddBtn'
-                value='Add'
-                onClick={onSave} />
+                onClick={onSave}>
+                Add
+            </button>
         </form>
     );
 };
