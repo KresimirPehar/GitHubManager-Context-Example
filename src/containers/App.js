@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 const App = () => {
   const filteredUser = useSelector(state => state.users.filteredUser);
-  
+
   return (
     <div className='app'>
       <Header />
