@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import User from './User';
 
-const UserList = ({ users }) => {
+const UserList = memo(({ users }) => {
     return (
         <div className='addUserLayout'>
             {users.map((user, index) =>
@@ -9,6 +9,6 @@ const UserList = ({ users }) => {
             )}
         </div>
     );
-};
+});
 
 export default UserList;
