@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {filterUser} from '../redux/actions/userActions';
+import { connect } from 'react-redux';
+import { filterUser } from '../redux/actions/userActions';
 
-const Search = ({filterUser}) => {
+const Search = ({ filterUser }) => {
     const onChange = e => filterUser(e.target.value);
 
     return (
@@ -13,9 +13,9 @@ const Search = ({filterUser}) => {
                 className='userInput searchInput'
                 placeholder='Search . . .'
                 onChange={onChange}
-                required/>
+                required />
         </div>
     );
-}
+};
 
-export default connect(null, {filterUser})(Search);
+export default connect(null, { filterUser })(Search);
