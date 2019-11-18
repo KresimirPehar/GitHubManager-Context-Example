@@ -1,9 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterUser } from '../redux/actions/userActions';
 
-const Search = ({ filterUser }) => {
-    const onChange = e => filterUser(e.target.value);
+const Search = () => {
+    const dispatch = useDispatch();
+    const onChange = e => dispatch(filterUser(e.target.value));
 
     return (
         <div id='search' className='searchLayout'>
@@ -18,4 +19,4 @@ const Search = ({ filterUser }) => {
     );
 };
 
-export default connect(null, { filterUser })(Search);
+export default Search;
