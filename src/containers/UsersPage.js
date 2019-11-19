@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addGitHubUser } from '../redux/actions/userActions';
 import UserList from '../components/UserList';
 import AddUser from '../components/AddUser';
 
-const UsersPage = ({ addGitHubUser, users, userError }) => {
+const UsersPage = ({ users }) => {
     const [userName, setUserName] = useState('');
     const [placeholder, setPlaceholder] = useState('Enter Github Username . . .');
+    const userError = useSelector(state => state.users.error);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (userError) setPlaceholder('User not found');
@@ -20,20 +22,20 @@ const UsersPage = ({ addGitHubUser, users, userError }) => {
 
     const onSave = e => {
         e.preventDefault();
-        addGitHubUser(userName);
+        dispatch(addGitHubUser(userName));
         setUserName('');
     };
 
     return (
         <div id='userPage'>
-            <UserList users={users} />
             <AddUser
                 userName={userName}
                 onChange={onChange}
                 onSave={onSave}
                 placeholder={placeholder} />
+            <UserList users={users} />
         </div>
     );
 };
 
-export default connect(state => ({ userError: state.users.error }), { addGitHubUser })(UsersPage);
+export default UsersPage;
