@@ -1,12 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useContext } from 'react';
 import '../style/style.css';
 import UsersPage from './UsersPage';
 import Search from './Search';
 import Header from '../components/Header';
+import { Store } from '../store';
 
 const App = () => {
-  const filteredUser = useSelector(state => state.users.filteredUser);
+  const store = useContext(Store);
 
   return (
     <div className='app'>
