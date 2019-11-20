@@ -1,9 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { filterUser } from '../redux/actions/userActions';
+import { filterUser } from '../actions/userActions';
 
-const Search = () => {
-    const dispatch = useDispatch();
+const Search = ({ dispatch }) => {
     const onChange = e => dispatch(filterUser(e.target.value));
 
     return (
