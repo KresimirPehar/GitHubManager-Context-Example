@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const User = ({ avatarUrl, name, location }) => {
+const User = memo(({ avatarUrl, name, location }) => {
     return (
         <div className='userCard'>
             <img src={avatarUrl} width='75' alt='avatar' />
@@ -8,6 +8,6 @@ const User = ({ avatarUrl, name, location }) => {
             <div className='userLocation'>{location}</div>
         </div>
     );
-};
+});
 
 export default User;
